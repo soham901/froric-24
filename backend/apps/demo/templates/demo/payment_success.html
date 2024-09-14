@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="display-4 text-success">Success!</h1>
+                    <p class="lead">Your transaction was successful.</p>
+                    <p>Thank you for your purchase. You can now continue using the platform.</p>
+                    <a href="{% url 'core:home' %}" class="btn btn-primary mt-4">Go to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

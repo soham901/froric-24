@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ item.name }}</h2>
+<p>{{ item.description }}</p>
+<p>Created: {{ item.created_at }}</p>
+<p>Last updated: {{ item.updated_at }}</p>
+<a href="{% url 'demo:item_update' item.pk %}" class="btn btn-primary">Edit</a>
+<a href="{% url 'demo:item_delete' item.pk %}" class="btn btn-danger">Delete</a>
+<a href="{% url 'demo:item_list' %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}

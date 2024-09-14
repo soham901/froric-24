@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container text-center my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="display-4 text-danger fw-semibold">Transaction Failed</h1>
+                    <p class="lead">Unfortunately, your transaction could not be processed.</p>
+                    <p>Please check your payment details and try again.</p>
+                    <p>If the issue persists, kindly contact our developer with the details below:</p>
+                    <p>Email: <a href="mailto:sagathiyasoham12345@gmail.com">sagathiyasoham12345@gmail.com</a></p>
+
+                    <p><strong>Send Proof:</strong> Please send us screenshots of any error messages or transaction details for faster support.</p>
+
+                    <a href="mailto:sagathiyasoham12345@gmail.com?subject=Transaction%20Failure" class="btn btn-warning mt-3">
+                        Contact Developer
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

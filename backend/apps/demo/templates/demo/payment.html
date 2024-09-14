@@ -1,0 +1,25 @@
+<form method="POST">
+    {% csrf_token %}
+    <div id="dropin-container"></div>
+    <input type="hidden" id="payment-method-nonce" name="payment_method_nonce">
+    <button type="submit">Pay Now</button>
+</form>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.26.0/js/dropin.min.js"></script>
+<script>
+  var form = document.querySelector('form');
+  var client_token = "{{ client_token }}";  // Inject the client token into your template
+
+  braintree.dropin.create({
+    authorization: client_token,
+    container: '#dropin-container'
+  }, function (createErr, instance) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      instance.requestPaymentMethod(function (err, payload) {
+        document.getElementById('payment-method-nonce').value = payload.nonce;
+        form.submit();
+      });
+    });
+  });
+</script>
