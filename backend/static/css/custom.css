@@ -11,3 +11,19 @@ main {
 .footer {
   margin-top: auto;
 }
+
+.card-body {
+    padding: 2rem; /* Adjust padding as needed */
+}
+
+.card-title {
+    font-size: 1.5rem; /* Adjust font size for the title */
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 1rem; /* Adjust top margin for spacing */
+}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Join a Crew</h2>
+          <form method="post">  <!-- Make sure form method is POST -->
+            {% csrf_token %}     <!-- Include CSRF token -->
+            {{ form|crispy }}    <!-- Render the form correctly -->
+            
+            <!-- Add a submit button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary mt-3">Join Crew</button>
+            </div>
+          </form>
+          <p class="text-center mt-3">
+            Want to create a new crew instead? <a href="{% url 'core:create_crew' %}">Create a crew here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

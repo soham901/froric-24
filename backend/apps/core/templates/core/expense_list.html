@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Active Expenses for {{ crew.name }}</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Expense Name</th>
+          <th>Total Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for expense in object_list %}
+          <tr>
+            <td>
+              <a href="{% url 'core:expense_detail' expense.id %}">
+                {{ expense.name }}
+              </a>
+            </td>
+            <td>{{ expense.total_amount }}</td>
+            <td>{{ expense.date }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3">No active expenses found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <button onclick="window.location.href+='new'" class="btn btn-primary">Create New Expense</button>
+  </div>
+{% endblock %}

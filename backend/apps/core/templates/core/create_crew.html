@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Create a New Crew</h2>
+          {% crispy form %}
+          <p class="text-center mt-3">
+            Want to join an existing crew? <a href="{% url 'core:join_crew' %}">Find a crew here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -54,6 +54,7 @@ def generate_client_token():
 
 
 def payment_view(request):
+    client_token = ""
     if request.method == "POST":
         form = BraintreePaymentForm(request.POST)
         if form.is_valid():

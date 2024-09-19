@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'jazzmin',
     'crispy_forms',
     'crispy_bootstrap5',
+    'import_export',
 
     # Django apps
     'django.contrib.admin',
@@ -85,7 +86,8 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -104,17 +106,17 @@ JAZZMIN_SETTINGS = {
     "site_logo_classes": "img-circle",
     "site_icon": None,
     "welcome_sign": "Welcome to the library",
-    "copyright": "Soham901",
+    "copyright": "FatafatSettle",
     "search_model": ["accounts.CustomUser"],
     "user_avatar": None,
     "topmenu_links": [
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "Support", "url": "https://x.com/soham901x", "new_window": True},
+        {"name": "Support", "url": "https://x.com/FatafatSettlex", "new_window": True},
         # {"model": "auth.User"},
         # {"app": "books"},
     ],
     "usermenu_links": [
-        {"name": "Support", "url": "https://x.com/soham901x", "new_window": True},
+        {"name": "Support", "url": "https://x.com/FatafatSettlex", "new_window": True},
         {"model": "auth.user"}
     ],
     "show_sidebar": True,
@@ -162,7 +164,10 @@ TIME_ZONE = 'Asia/Kolkata'
 
 
 # BRAINTREE
-BRAINTREE_MERCHANT_ID = os.getenv("BRAINTREE_MERCHANT_ID")
-BRAINTREE_PUBLIC_KEY = os.getenv("BRAINTREE_PUBLIC_KEY")
-BRAINTREE_PRIVATE_KEY = os.getenv("BRAINTREE_PRIVATE_KEY")
+#BRAINTREE_MERCHANT_ID = os.getenv("BRAINTREE_MERCHANT_ID")
+#BRAINTREE_PUBLIC_KEY = os.getenv("BRAINTREE_PUBLIC_KEY")
+#BRAINTREE_PRIVATE_KEY = os.getenv("BRAINTREE_PRIVATE_KEY")
+BRAINTREE_MERCHANT_ID = '3mt8sw67rr3v5q4b'
+BRAINTREE_PRIVATE_KEY = '4bbc699a11a683272aef70c557181e0d'
+BRAINTREE_PUBLIC_KEY = '3kg989n8p2sbfknq'
 BRAINTREE_ENVIRONMENT = braintree.Environment.Sandbox
