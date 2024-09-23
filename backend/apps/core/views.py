@@ -142,8 +142,11 @@ class ExpenseDetailView(LoginRequiredMixin, DetailView):
         expense = self.get_object()
         participants = expense.participants.all()
 
-        # Calculate the amount each participant should contribute
-        splitwise_amount = expense.total_amount / participants.count() if participants.count() > 0 else 0
+        # Calculate the total collected amount
+        total_collected = sum(participant.amount_paid for participant in expense.participants.all())
+
+        # Calculate the splitwise amount (total - collected)
+        splitwise_amount = expense.total_amount - total_collected
 
         # Calculate total contributions made by each participant
         contributions = ExpenseParticipant.objects.filter(expense=expense)
@@ -151,7 +154,7 @@ class ExpenseDetailView(LoginRequiredMixin, DetailView):
 
         # Calculate the remaining amount for each participant
         remaining_amounts = {
-            participant.user: splitwise_amount - contributions_by_user.get(participant.user, 0)
+            participant.user: splitwise_amount / participants.count() - contributions_by_user.get(participant.user, 0)
             for participant in participants
         }
 
@@ -162,6 +165,32 @@ class ExpenseDetailView(LoginRequiredMixin, DetailView):
         context['remaining_amounts'] = remaining_amounts
         context['form'] = ContributionForm()
         return context
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     expense = self.get_object()
+    #     participants = expense.participants.all()
+
+    #     # Calculate the amount each participant should contribute
+    #     splitwise_amount = expense.total_amount / participants.count() if participants.count() > 0 else 0
+
+    #     # Calculate total contributions made by each participant
+    #     contributions = ExpenseParticipant.objects.filter(expense=expense)
+    #     contributions_by_user = {participant.user: participant.amount_paid for participant in contributions}
+
+    #     # Calculate the remaining amount for each participant
+    #     remaining_amounts = {
+    #         participant.user: splitwise_amount - contributions_by_user.get(participant.user, 0)
+    #         for participant in participants
+    #     }
+
+    #     print(remaining_amounts)
+
+    #     context['participants'] = participants
+    #     context['splitwise'] = splitwise_amount
+    #     context['remaining_amounts'] = remaining_amounts
+    #     context['form'] = ContributionForm()
+    #     return context
 
     def post(self, request, *args, **kwargs):
         expense = self.get_object()

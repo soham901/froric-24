@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% load custom_filters %}
 
 {% block content %}
-  <h2>{{ expense.description }}</h2>
-  <p><strong>Total Amount:</strong> {{ expense.total_amount }}</p>
-  <p><strong>Date:</strong> {{ expense.date }}</p>
-  <p><strong>Category:</strong> {{ expense.get_category_display }}</p>
+  <h1 class="fw-bold">{{ expense.name }}</h1>
+  <h3>{{ expense.description }}</h3>
+  <hr />
+  <p>
+    <strong>Total Amount:</strong> {{ expense.total_amount }}
+  </p>
+  <p>
+    <strong>Date:</strong> {{ expense.date }}
+  </p>
+  <p>
+    <strong>Category:</strong> {{ expense.get_category_display }}
+  </p>
+
+  <hr />
 
   <h3>Contributors</h3>
   <ul>
@@ -17,11 +27,13 @@
     {% endfor %}
   </ul>
 
+  <hr />
+
   <h3>Contribute</h3>
-    <p>You should pay: {{ splitwise }}</p>
+  <p>You should pay: {{ splitwise }}</p>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button type="submit" class="btn btn-primary">Contribute</button>
   </form>
 {% endblock %}
